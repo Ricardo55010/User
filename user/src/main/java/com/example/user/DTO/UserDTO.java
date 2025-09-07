@@ -1,21 +1,13 @@
-package com.example.user.Models;
+package com.example.user.DTO;
 
-import jakarta.persistence.*;
 
-@Entity
-public class User{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Id")
+public class UserDTO {
     Long id;
-    @Column(name="name")
     String name;
-    @Column(name="age")
     Integer age;
-    @Column(name="wage")
     Integer wage;
 
-    public User(String name, Integer age, Integer wage) {
+    public UserDTO(String name, Integer age, Integer wage) {
         this.name = name;
         this.age = age;
         this.wage = wage;

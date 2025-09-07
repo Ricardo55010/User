@@ -1,12 +1,18 @@
 package com.example.user.Controller;
 
+import com.example.user.DTO.UserDTO;
 import com.example.user.Models.User;
 import com.example.user.Services.UserServiceImpl;
 import com.example.user.Services.UserService;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -15,7 +21,14 @@ public class UserController {
         this.userService = userService;
     }
     @QueryMapping
-    public ResponseEntity<User> getUser(){
-        return ResponseEntity.ok(new User("Ricardo",10,1500));
+    public UserDTO getUser(@Argument long id){
+        UserDTO userDTO = userService.getUser(id);
+        return userDTO;
+    }
+
+    @MutationMapping
+    public UserDTO createUser(@Argument String name){
+        UserDTO userDTO = userService.createUser(name);
+        return userDTO;
     }
 }

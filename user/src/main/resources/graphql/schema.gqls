@@ -2,14 +2,9 @@ type User {
     id: ID!
 }
 
-type Budget {
-    id: ID!
-    title: String!
-}
-
 # The Root Query for the application
 type Query {
-    getUser(count: Int, offset: Int): [User]!
+    getUser(id: Long, offset: Int): User!
 }
 
 # The Root Mutation for the application
