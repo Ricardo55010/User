@@ -19,8 +19,11 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
     public UserDTO getUser(long id){
-        rabbitTemplate.convertAndSend("myExchange","my.routing.key", new String("Starting communication with another microservice"));
-        UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).get());
+
+        //UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).get());
+
+        UserDTO userDTO = new UserDTO(1L,"Ricardo",12,1);
+        rabbitTemplate.convertAndSend("myExchange","my.routing.key", userDTO);
         return userDTO ;
     }
     public UserDTO createUser(String name){

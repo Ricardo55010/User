@@ -7,6 +7,12 @@ public class UserDTO {
     Integer age;
     Integer wage;
 
+    public UserDTO(Long id,String name, Integer age, Integer wage) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.wage = wage;
+    }
     public UserDTO(String name, Integer age, Integer wage) {
         this.name = name;
         this.age = age;

@@ -4,7 +4,7 @@ type User {
 
 # The Root Query for the application
 type Query {
-    getUser(id: Long, offset: Int): User!
+    getUser(id: Int, offset: Int): User!
 }
 
 # The Root Mutation for the application

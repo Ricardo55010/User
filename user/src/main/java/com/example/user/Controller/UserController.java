@@ -1,18 +1,11 @@
 package com.example.user.Controller;
 
 import com.example.user.DTO.UserDTO;
-import com.example.user.Models.User;
-import com.example.user.Services.UserServiceImpl;
 import com.example.user.Services.UserService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-
-import java.util.List;
 
 @Controller
 public class UserController {
