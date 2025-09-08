@@ -36,6 +36,8 @@ public class RateLimiterFilter implements Filter{
 
         chain.doFilter(request, response);
 
+        requestCountsPerIpAddress.put(clientIpAddress,new AtomicInteger(requestCount.decrementAndGet()));
+        //Alt: AtomicInteger vs Syncronized vs Locks for concurrent request count
     }
 
     @Override
