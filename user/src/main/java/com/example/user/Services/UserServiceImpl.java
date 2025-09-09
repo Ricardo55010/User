@@ -23,6 +23,7 @@ public class UserServiceImpl implements UserService {
         //UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).get());
 
         UserDTO userDTO = new UserDTO(1L,"Ricardo",12,1);
+        System.out.println("sending:"+ userDTO.toString());
         rabbitTemplate.convertAndSend("myExchange","my.routing.key", userDTO);
         return userDTO ;
     }

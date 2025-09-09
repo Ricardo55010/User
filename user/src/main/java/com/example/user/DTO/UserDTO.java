@@ -19,6 +19,16 @@ public class UserDTO {
         this.wage = wage;
     }
 
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", wage=" + wage +
+                '}';
+    }
+
     public String getName() {
         return name;
     }
@@ -37,6 +47,14 @@ public class UserDTO {
 
     public Integer getWage() {
         return wage;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void setWage(Integer wage) {
