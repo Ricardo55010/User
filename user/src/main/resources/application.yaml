@@ -1,4 +1,13 @@
 spring:
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: health,mappings
+        base-path: /actuator
+    security:
+      enabled: false
+
   datasource:
     url: jdbc:mysql://${DB_HOST:localhost}:3306/${DB_NAME:Billink}?createDatabaseIfNotExist=true&useSSL=false
     username: ${DB_USERNAME:root}
