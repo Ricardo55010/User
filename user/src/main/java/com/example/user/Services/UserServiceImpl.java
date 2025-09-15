@@ -22,14 +22,17 @@ public class UserServiceImpl implements UserService {
 
         //UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).get());
 
-        UserDTO userDTO = new UserDTO(1L,"Ricardo",12,1);
+        UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).get());
         System.out.println("sending:"+ userDTO.toString());
-        rabbitTemplate.convertAndSend("myExchange","my.routing.key", userDTO);
+
         return userDTO ;
     }
     public UserDTO createUser(String name){
         User user = new User(name,1,1200);
-        return UserMapper.mapUserToUserDTO(user);
+        userRepository.save(user);
+        UserDTO userDTO = UserMapper.mapUserToUserDTO(user);
+        rabbitTemplate.convertAndSend("myExchange","my.routing.key", userDTO);
+        return userDTO ;
     }
 
 }
