@@ -27,8 +27,8 @@ public class UserController {
     }
 
     @MutationMapping
-    public UserDTO updateUser(@Argument String name, @Argument Long id){
-        UserDTO userDTO = userService.updateUser(name, id);
+    public UserDTO updateUser(@Argument UserDTO user){
+        UserDTO userDTO = userService.updateUser(user);
         return userDTO;
     }
 

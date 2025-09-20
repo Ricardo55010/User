@@ -3,6 +3,11 @@ type UserDTO {
     name: String
 }
 
+input UserInput{
+    id: Int!
+    name: String!
+}
+
 # The Root Query for the application
 type Query {
     getUser(id: Int, offset: Int): UserDTO!
@@ -11,6 +16,6 @@ type Query {
 # The Root Mutation for the application
 type Mutation {
     createUser(name: String!) : UserDTO!
-    updateUser(name: String!, id: Int!) : UserDTO!
+    updateUser(user: UserInput!) : UserDTO!
     deleteUser(id: Int!): UserDTO!
 }

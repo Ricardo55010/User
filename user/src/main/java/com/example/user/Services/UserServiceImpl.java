@@ -35,9 +35,10 @@ public class UserServiceImpl implements UserService {
         return userDTO ;
     }
 
-    public UserDTO updateUser(String name, Long id){
-        User user = userRepository.findById(id).get();
-        user.setName(name);
+    public UserDTO updateUser(UserDTO userDTO){
+        System.out.println(userDTO.getName());
+        User user = userRepository.findById(userDTO.getId()).get();
+        user.setName(user.getName());
         userRepository.save(user);
         return UserMapper.mapUserToUserDTO(user);
     }
