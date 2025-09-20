@@ -22,6 +22,10 @@ public class User{
         this.wage = wage;
     }
 
+    public User(){
+
+    }
+
     public String getName() {
         return name;
     }

@@ -35,4 +35,20 @@ public class UserServiceImpl implements UserService {
         return userDTO ;
     }
 
+    public UserDTO updateUser(String name, Long id){
+        User user = userRepository.findById(id).get();
+        user.setName(name);
+        userRepository.save(user);
+        return UserMapper.mapUserToUserDTO(user);
+    }
+
+    public UserDTO deleteUser(long id){
+        User user = userRepository.findById(id).get();
+        userRepository.deleteById(id);
+        UserDTO userDTO = UserMapper.mapUserToUserDTO(user);
+        return userDTO;
+    }
+
+
+
 }

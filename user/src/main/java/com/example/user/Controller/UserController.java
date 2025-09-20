@@ -1,6 +1,7 @@
 package com.example.user.Controller;
 
 import com.example.user.DTO.UserDTO;
+import com.example.user.Models.User;
 import com.example.user.Services.UserService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -24,4 +25,18 @@ public class UserController {
         UserDTO userDTO = userService.createUser(name);
         return userDTO;
     }
+
+    @MutationMapping
+    public UserDTO updateUser(@Argument String name, @Argument Long id){
+        UserDTO userDTO = userService.updateUser(name, id);
+        return userDTO;
+    }
+
+    @MutationMapping
+    public UserDTO deleteUser(@Argument long id){
+        UserDTO userDTO = userService.deleteUser(id);
+        return userDTO;
+    }
+
+
 }

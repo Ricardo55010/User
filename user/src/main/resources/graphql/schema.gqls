@@ -11,4 +11,6 @@ type Query {
 # The Root Mutation for the application
 type Mutation {
     createUser(name: String!) : UserDTO!
+    updateUser(name: String!, id: Int!) : UserDTO!
+    deleteUser(id: Int!): UserDTO!
 }
