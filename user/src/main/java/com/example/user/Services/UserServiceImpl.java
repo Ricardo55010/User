@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
         User user = new User(name,1,1200);
         userRepository.save(user);
         UserDTO userDTO = UserMapper.mapUserToUserDTO(user);
-        rabbitTemplate.convertAndSend("myExchange","my.routing.key", userDTO);
+        //rabbitTemplate.convertAndSend("myExchange","my.routing.key", userDTO);
         return userDTO ;
     }
 

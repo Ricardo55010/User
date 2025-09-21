@@ -1,0 +1,21 @@
+type UserDTO {
+    id: ID!
+    name: String
+}
+
+input UserInput{
+    id: Int!
+    name: String!
+}
+
+# The Root Query for the application
+type Query {
+    getUser(id: Int, offset: Int): UserDTO!
+}
+
+# The Root Mutation for the application
+type Mutation {
+    createUser(name: String!) : UserDTO!
+    updateUser(user: UserInput!) : UserDTO!
+    deleteUser(id: Int!): UserDTO!
+}
