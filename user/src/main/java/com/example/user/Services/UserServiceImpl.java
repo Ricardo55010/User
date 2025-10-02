@@ -1,6 +1,7 @@
 package com.example.user.Services;
 
 import com.example.user.DTO.UserDTO;
+import com.example.user.Exceptions.NoSuchElementException;
 import com.example.user.Mapper.UserMapper;
 import com.example.user.Models.User;
 import com.example.user.Repository.UserRepository;
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
         //UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).get());
 
-        UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).get());
+        UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).orElseThrow(()-> new NoSuchElementException("No expense existent to retrieve"));
         System.out.println("sending:"+ userDTO.toString());
 
         return userDTO ;
@@ -37,14 +38,14 @@ public class UserServiceImpl implements UserService {
 
     public UserDTO updateUser(UserDTO userDTO){
         System.out.println(userDTO.getName());
-        User user = userRepository.findById(userDTO.getId()).get();
+        User user = userRepository.findById(userDTO.getId()).orElseThrow(()-> new NoSuchElementException("No expense existent to retrieve"));
         user.setName(user.getName());
         userRepository.save(user);
         return UserMapper.mapUserToUserDTO(user);
     }
 
     public UserDTO deleteUser(long id){
-        User user = userRepository.findById(id).get();
+        User user = userRepository.findById(id).orElseThrow(()-> new NoSuchElementException("No expense existent to retrieve"))
         userRepository.deleteById(id);
         UserDTO userDTO = UserMapper.mapUserToUserDTO(user);
         return userDTO;
