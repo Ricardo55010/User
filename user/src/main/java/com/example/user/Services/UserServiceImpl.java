@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 
         //UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).get());
 
-        UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).orElseThrow(()-> new NoSuchElementException("No expense existent to retrieve"));
+        UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).orElseThrow(()-> new NoSuchElementException("No expense existent to retrieve")));
         System.out.println("sending:"+ userDTO.toString());
 
         return userDTO ;
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public UserDTO deleteUser(long id){
-        User user = userRepository.findById(id).orElseThrow(()-> new NoSuchElementException("No expense existent to retrieve"))
+        User user = userRepository.findById(id).orElseThrow(()-> new NoSuchElementException("No expense existent to retrieve"));
         userRepository.deleteById(id);
         UserDTO userDTO = UserMapper.mapUserToUserDTO(user);
         return userDTO;
