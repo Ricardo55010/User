@@ -3,6 +3,7 @@ package com.example.user.Aspects;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -11,13 +12,17 @@ import java.time.Instant;
 @Component
 public class LogRepositoryAspect {
 
-    @Before("execution(* com.example.user.Repository.*.*(..))")
+    @Pointcut("execution(* com.example.user.Repository.*.*(..))")
+    public void getRepositoryPointCut(){}
+
+
+    @Before("getRepositoryPointCut()")
     public void logBeforeRepositoryExecution() {
         Instant instant = Instant.now();
         System.out.println("Starting repository action "+ instant);
     }
 
-    @After("execution(* com.example.user.Repository.*.*(..))")
+    @After("getRepositoryPointCut()")
     public void logAfterRepositoryxecution() {
         Instant instant = Instant.now();
         System.out.println("Ending repository action "+ instant);

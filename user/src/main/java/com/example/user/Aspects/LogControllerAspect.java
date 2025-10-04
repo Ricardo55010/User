@@ -3,6 +3,7 @@ package com.example.user.Aspects;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
@@ -12,12 +13,15 @@ import java.time.Instant;
 public class LogControllerAspect {
 
 
-    @Before("execution(* com.example.user.Controllers.*.*(..))")
+    @Pointcut("execution(* com.example.user.Controller.*.*(..))")
+    public void getControllerPointCut(){}
+
+    @Before("getControllerPointCut()")
     public void logBeforeControllerExecution() {
         Instant instant = Instant.now();
         System.out.println("Starting controller action "+ instant);
     }
-    @After("execution(* com.example.user.Controllers.*.*(..))")
+    @After("getControllerPointCut()")
     public void logAfterControllerExecution() {
         Instant instant = Instant.now();
         System.out.println("Ending controller action "+ instant);
