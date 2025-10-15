@@ -5,7 +5,7 @@ import com.example.user.Models.User;
 
 public interface UserService {
     public UserDTO getUser(long id);
-    public UserDTO createUser(String name);
+    public UserDTO createUser(UserDTO userDTO);
     public UserDTO updateUser(UserDTO userDTO);
     public UserDTO deleteUser(long id);
 }

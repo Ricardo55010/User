@@ -23,29 +23,30 @@ public class UserServiceImpl implements UserService {
 
         //UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).get());
 
-        UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).orElseThrow(()-> new NoSuchElementException("No expense existent to retrieve")));
+        UserDTO userDTO = UserMapper.mapUserToUserDTO(userRepository.findById(id).orElseThrow(()-> new NoSuchElementException("No User existent to retrieved")));
         System.out.println("sending:"+ userDTO.toString());
 
         return userDTO ;
     }
-    public UserDTO createUser(String name){
-        User user = new User(name,1,1200);
+    public UserDTO createUser(UserDTO userDTO){
+        User user = UserMapper.mapUserDTOToUser(userDTO);
         userRepository.save(user);
-        UserDTO userDTO = UserMapper.mapUserToUserDTO(user);
         //rabbitTemplate.convertAndSend("myExchange","my.routing.key", userDTO);
         return userDTO ;
     }
 
     public UserDTO updateUser(UserDTO userDTO){
         System.out.println(userDTO.getName());
-        User user = userRepository.findById(userDTO.getId()).orElseThrow(()-> new NoSuchElementException("No expense existent to retrieve"));
+        User user = userRepository.findById(userDTO.getId()).orElseThrow(()-> new NoSuchElementException("No User existent to retrieved"));
         user.setName(user.getName());
+        user.setAge(user.getWage());
+        user.setWage(user.getWage());
         userRepository.save(user);
         return UserMapper.mapUserToUserDTO(user);
     }
 
     public UserDTO deleteUser(long id){
-        User user = userRepository.findById(id).orElseThrow(()-> new NoSuchElementException("No expense existent to retrieve"));
+        User user = userRepository.findById(id).orElseThrow(()-> new NoSuchElementException("No User existent to be retrieved"));
         userRepository.deleteById(id);
         UserDTO userDTO = UserMapper.mapUserToUserDTO(user);
         return userDTO;

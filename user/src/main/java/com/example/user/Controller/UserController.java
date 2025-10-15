@@ -21,8 +21,8 @@ public class UserController {
     }
 
     @MutationMapping
-    public UserDTO createUser(@Argument String name){
-        UserDTO userDTO = userService.createUser(name);
+    public UserDTO createUser(@Argument UserDTO user){
+        UserDTO userDTO = userService.createUser(user);
         return userDTO;
     }
 

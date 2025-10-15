@@ -47,7 +47,7 @@ public class UserControllerTest {
     void testCreateUser(){
 
         UserDTO user = new UserDTO("Richard",22,2);
-        when(userService.createUser("Richard")).thenReturn(user);
+        when(userService.createUser(user)).thenReturn(user);
 
         graphQlTester.document("mutation { createUser(name: \"Richard\") {  name } }")
                 .execute()
